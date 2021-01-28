@@ -2,12 +2,9 @@ import pickle
 import datetime
 import pandas as pd
 
-#bring in serialized model
 with open('model.pkl', 'rb') as f:
     m = pickle.load(f)
-    
-    
-#function that uses model to predict the power generation 
+
 def predict(year, month, day):
     '''
     Input:

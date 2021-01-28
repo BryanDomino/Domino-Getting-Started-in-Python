@@ -104,6 +104,7 @@ def update_output(fuel_type, start_date):
         r = requests.get(url, allow_redirects=True)
         open('data.csv', 'wb').write(r.content)
         df = pd.read_csv('data.csv', skiprows=1, skipfooter=1, header=None, engine='python')
+        df = df.iloc[:,0:18]
         df.columns = ['HDF', 'date', 'half_hour_increment',
                 'CCGT', 'OIL', 'COAL', 'NUCLEAR',
                 'WIND', 'PS', 'NPSHYD', 'OCGT',
@@ -228,7 +229,7 @@ def update_output(fuel_type, start_date):
                     ])
                 ),
                 rangeslider=dict(
-                    visible=True 
+                    visible=True
                 ),
             ),
         )
@@ -238,4 +239,4 @@ def update_output(fuel_type, start_date):
         }
 
 if __name__ == '__main__':
-    app.run_server(port=8888, host='0.0.0.0', debug=False)
+    app.run_server(port=8888, host='0.0.0.0', debug=True)
